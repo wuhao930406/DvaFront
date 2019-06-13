@@ -1,19 +1,19 @@
-import { login } from "../services/example";
+import { getall } from "../services/example";
 import { routerRedux } from 'dva/router'
 
 export default {
   namespace: 'example',
 
   state: {
-    login:""
+    getall:""
   },
 
   effects: {
-    * login({ payload }, { call, put }) {  
-      let res = yield call(login, payload)
+    * getall({ payload }, { call, put }) {  
+      let res = yield call(getall, payload)
       yield put({
         type: 'updateState',
-        payload: { login:res }
+        payload: { getall:res.data?res.data:null }
       })
       return res.next
     },

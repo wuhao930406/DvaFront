@@ -1,23 +1,74 @@
-import { Row,Col,Card,Icon,PageHeader  } from 'antd';
-import { Link } from 'dva/router';
+import { Row, Col, Card, Icon, PageHeader, Carousel } from 'antd';
+import { Link,router } from 'dva/router';
+
+import React, { Component } from 'react';
 import styles from '../IndexPage.css';
-const HomePage = ({children}) => {
-  const models = [{name:'模块1',icon:"edit"}, 
-  {name:'模块2',icon:"form"}, 
-  {name:'模块3',icon:"copy"}, 
-  {name:'模块4',icon:"scissor"}, 
-  {name:'模块5',icon:"delete"}, 
-  {name:'模块6',icon:"snippets"}],
-  h = document.body.clientHeight;
+import { connect } from 'dva';
+
+@connect(({ example }) => ({
+  example
+}))
+class HomePage extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+
+    }
+  }
+
+  /* dispatch获取 */
+  setNewState(type, value, fn) {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'example/' + type,
+      payload: value
+    }).then((res) => {
+      if (res) {
+        fn ? fn(res) : null
+      }
+    })
+  }
+
+  componentDidMount() {
+    this.setNewState("getall")
+
+
+  }
+
+  render() {
+    const { getall } = this.props.example;
+
     return (
       <Row>
-        111
-        
+        <div className={styles.dotc}>
+        <Carousel autoplay speed={800} draggable autoplaySpeed={4000}>
+          {
+            getall &&
+            getall.map((Item, i) => {
+              let imgurl = `http://localhost:8000/edu${Item.url}`
+              console.log(imgurl)
+              return (
+                Item.jumpurl ?
+                  <Link to={Item.jumpurl} key={i} className={styles.banner}>
+                    <div style={{ background: `url(${imgurl}) no-repeat center`,width:"100%",height:"100%",backgroundSize:"cover"}}>
+                    </div>
+                  </Link> :
+                  <div key={i} className={styles.banner}>
+                    <div style={{ background: `url(${imgurl}) no-repeat center`,width:"100%",height:"100%",backgroundSize:"cover"}}>
+                    </div>
+                  </div>
+              )
+            })
+          }
+        </Carousel>
+        </div>
+        <p>112312312</p>
       </Row>
     );
-  };
-  
-  HomePage.propTypes = {
-  };
-  
-  export default HomePage;
+  }
+}
+
+HomePage.propTypes = {
+};
+
+export default HomePage;

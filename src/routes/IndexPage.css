@@ -94,6 +94,17 @@ button,img{
   justify-content: space-between;
   align-items: center;
   padding: 0 24px;
+  box-shadow: 2px 0px 4px #999;
+  position: relative;
+  z-index: 120;
+  height: 72px !important;
+}
+.indexheader .minddle{
+  width:1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .indexheader img{
   background-color: #ffffff;
@@ -197,14 +208,29 @@ button,img{
 }
 .banner{
   width:100%;
-  margin:6px 6px 12px 6px;
-  background:url(../assets/images/timg.jpg) no-repeat;
+  height: 600px;
+  background-repeat: no-repeat;
   background-size:cover;
   background-position:center;
-  position:relative;
-  overflow: hidden;
 }
 
+.dotc ul{
+	height: 6px !important;
+  bottom: 20px !important;
+}
+.dotc li{
+	margin:0 4px !important;
+}
+.dotc li.slick-active button {
+	width: 24px;
+	background: #f50 !important;
+	opacity: 1;
+}
+.dotc button {
+  background: #f50 !important;
+  height: 6px !important;
+  border-radius: 60px !important;
+}
 
 
 
