@@ -55,12 +55,9 @@ class IndexPage extends Component {
                 </span>
                   }
                 >
-                  <Menu.Item key="circle:1">海外实体学校</Menu.Item>
-                  <Menu.Item key="circle:2">北美在线学校</Menu.Item>
-                  <Menu.Item key="circle:3">北美离案私塾</Menu.Item>
-                  <Menu.Item key="circle:4">国际课程整体配套</Menu.Item>
-                  <Menu.Item key="circle:5">信息化校园平台</Menu.Item>
-                  <Menu.Item key="circle:6">大型国际教育活动</Menu.Item>
+                  <Menu.Item key="circle:1">企业介绍</Menu.Item>
+                  <Menu.Item key="circle:2">发展历程</Menu.Item>
+                  <Menu.Item key="circle:3">企业成绩</Menu.Item>
                 </SubMenu>
                 <SubMenu
                   title={
@@ -101,14 +98,15 @@ class IndexPage extends Component {
             <ScrollBar>
               <div style={{ padding: w < 500 ? "0px 17px 18px 0px" : 0, height: "100%" }}>
                 <IndexRouterConfig></IndexRouterConfig>
+                <div className={styles.indexfooter}>
+                  <p>Ant Design ©2018 Created by Ant UED</p>
+                </div>
               </div>
             </ScrollBar>
           </div>
 
         </Content>
-        <Footer className={styles.indexfooter}>
-          <p>Ant Design ©2018 Created by Ant UED</p>
-        </Footer>
+
 
         <Drawer
           placement="top"

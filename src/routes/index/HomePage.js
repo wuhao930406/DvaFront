@@ -62,7 +62,7 @@ class HomePage extends Component {
           }
         </Carousel>
         </div>
-        <p>112312312</p>
+        <div style={{height:1800}}></div>
       </Row>
     );
   }

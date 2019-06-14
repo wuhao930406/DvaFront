@@ -3,7 +3,7 @@
     ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": true }]
   ],
   "theme": {
-    "@primary-color": "#f20d0d"
+    "@primary-color": "#ce281f"
   },
   "proxy": {
     "/edu": {
