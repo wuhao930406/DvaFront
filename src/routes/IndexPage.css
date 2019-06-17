@@ -208,14 +208,10 @@ button,img{
 }
 .banner{
   width:100%;
-  height: 540px;
-  background-repeat: no-repeat;
-  background-size:cover;
-  background-position:center;
 }
 
 .dotc ul{
-	height: 6px !important;
+	height: 8px !important;
   bottom: 20px !important;
 }
 .dotc li{
@@ -223,16 +219,20 @@ button,img{
 }
 .dotc li.slick-active button {
 	width: 24px;
-	background: #f50 !important;
 	opacity: 1;
 }
 .dotc button {
-  background: #f50 !important;
-  height: 6px !important;
+  height: 8px !important;
   border-radius: 60px !important;
 }
 
-
+.minddle{
+  width:"100%";
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 2em 1em;
+}
 
 
 
