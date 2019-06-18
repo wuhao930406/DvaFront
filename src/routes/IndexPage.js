@@ -9,10 +9,14 @@ import { Link } from 'dva/router';
 import ScrollBar from '../components/ScrollBar';
 import IndexRouterConfig from '../indexrouter'
 import { template } from 'handlebars';
+import { router } from 'dva/router'
+ 
 const { SubMenu } = Menu;
 const { Header, Content, Footer } = Layout;
 
-
+@connect(({ example }) => ({
+  example
+}))
 class IndexPage extends Component {
   state = {
     visible: false,
@@ -20,7 +24,7 @@ class IndexPage extends Component {
     current: "",
     team: [
       {
-        key: "circle:1",
+        key: "circle:/main/about",
         name: "企业介绍"
       },
       {
@@ -72,9 +76,24 @@ class IndexPage extends Component {
     });
   };
 
-  handleClick = e => {
+  /* dispatch获取 */
+  setNewState(type, value, fn) {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'example/' + type,
+      payload: value
+    }).then((res) => {
+      if (res) {
+        fn ? fn(res) : null
+      }
+    })
+  }
+
+  handleClick = (e) => {
     this.setState({
       current: e.key,
+    },()=>{
+      this.setNewState("redirect",{url:e.key.split(":")[1]})
     });
   };
 
@@ -97,7 +116,7 @@ class IndexPage extends Component {
                 </span>
                   }
                 >
-                  <Menu.Item key="circle:1">企业介绍</Menu.Item>
+                  <Menu.Item key="circle:/main/about">企业介绍</Menu.Item>
                   <Menu.Item key="circle:2">发展历程</Menu.Item>
                   <Menu.Item key="circle:3">企业成绩</Menu.Item>
                 </SubMenu>
@@ -234,7 +253,7 @@ class IndexPage extends Component {
             <Col span={24} style={{ backgroundColor: ifshow ? "rgba(0,0,0,0.1)" : "transparent", height: ifshow ? 122 : 1, transition: "all 0.4s", overflow: "hidden" }}>
               {
                 this.state.current.indexOf("circle") != -1&&team.map((item,i)=>(
-                  <Col span={8} style={{ cursor: "pointer" }} onClick={() => {
+                  <Col key={i} span={8} style={{ cursor: "pointer" }} onClick={() => {
                     this.setState({
                       current: item.key,
                     })
@@ -244,7 +263,7 @@ class IndexPage extends Component {
               ))
               }{
                 this.state.current.indexOf("service") != -1 && service.map((item, i) => (
-                  <Col span={8} style={{ cursor: "pointer" }} onClick={() => {
+                  <Col key={i} span={8} style={{ cursor: "pointer" }} onClick={() => {
                     this.setState({
                       current: item.key,
                     })

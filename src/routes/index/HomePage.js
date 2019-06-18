@@ -174,30 +174,28 @@ class HomePage extends Component {
               {
                 section2.map((item, i) => {
                   return (
-                    <Col key={i} xs={24} sm={12} md={12} lg={8} xl={8} xxl={8} style={{padding:24}}>
-                      <div className={styles.hoveritem}>
-                        <div className={styles.hideimg}>
-                          <img src={`./assets/images/indexicon${i + 1}.png`} alt="" />
-                          <img src={`./assets/images/indexicons${i + 1}.png`} alt="" />
-                        </div>
-                        
-                        <h2>{
-                          item.title
-                        }</h2>
+                    <Col key={i} xs={24} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ padding: 24 }}>
+                      <Link style={{ width: "100%", height: 300 }} to="/404">
+                        <div className={styles.hoveritem}>
+                          <div className={styles.hideimg}>
+                            <img src={`./assets/images/indexicon${i + 1}.png`} alt="" />
+                            <img src={`./assets/images/indexicons${i + 1}.png`} alt="" />
+                          </div>
 
-                        <div className={styles.hidedesc}>
-                          <i></i>
-                          <p>{item.desc}</p>  
+                          <h2>{
+                            item.title
+                          }</h2>
+
+                          <div className={styles.hidedesc}>
+                            <i></i>
+                            <p>{item.desc}</p>
+                          </div>
+                          <div className={styles.hidebac}>
+                          </div>
+
                         </div>
-                        <div  className={styles.hidebac}>
-                        </div> 
-                        <div className={styles.jump}>
-                            <Link style={{display:"flex",justifyContent:"center",alignItems:"center",width:30,height:30}} to="/404">
-                              <img style={{width:20}} src="./assets/images/eyes.png" alt=""/>  
-                            </Link> 
-                        </div> 
-                       
-                      </div>
+                      </Link>
+
                     </Col>
                   )
                 })

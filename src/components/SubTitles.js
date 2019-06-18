@@ -23,6 +23,7 @@ const SubTitles = ({...props}) =>{
                 fontSize:18,
                 color:"#999",
                 fontWeight:"lighter",
+                backgroundColor:"transparent",
                 ...props.dstyle,
             }}>
                {props.desc}
