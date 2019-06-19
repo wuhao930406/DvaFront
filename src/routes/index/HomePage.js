@@ -104,11 +104,15 @@ class HomePage extends Component {
                 let imgurl = `http://localhost:8000/edu${Item.url}`
                 return (
                   Item.jumpurl ?
-                    <Link to={Item.jumpurl} key={i} className={styles.banner}>
-                      <img src={imgurl} alt="" style={{ width: "100%", height: "auto" }} />
+                    <Link to={Item.jumpurl} key={i} className={styles.banner} >
+                      <div style={{ backgroundImage: `url(${imgurl})` }}>
+
+                      </div>
                     </Link> :
                     <div key={i} className={styles.banner}>
-                      <img src={imgurl} alt="" style={{ width: "100%", height: "auto" }} />
+                      <div style={{ backgroundImage: `url(${imgurl})` }}>
+
+                      </div>
                     </div>
                 )
               })
