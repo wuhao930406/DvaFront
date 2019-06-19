@@ -107,7 +107,7 @@ class Develop extends Component {
 
         return (
             <div className={styles.container}>
-                <div className={styles.mostbanner} style={{ background: `url(./assets/images/develop.jpg) no-repeat center` }}>
+                <div className={styles.mostbanner} style={{ background: `url(./assets/images/develop.jpg) no-repeat center`,backgroundSize:"cover" }}>
                     <div className={styles.minddle}>
                         <SubTitles
                             title="发展历程"
@@ -145,7 +145,7 @@ class Develop extends Component {
                                                 <div className={styles.developitem}>
                                                     <h2 style={{ color: "#d95750" }}>{Item.time}</h2>
                                                     <p>
-                                                        <p>{Item.title}</p>
+                                                        <span>{Item.title}</span>
                                                         {Item.desc}
                                                     </p>
                                                     <div className={styles.imgcon} style={i % 2 == 0 ?
@@ -172,7 +172,7 @@ class Develop extends Component {
                                                 <div className={styles.developitem}>
                                                     <h2 style={{ color: "#d95750" }}>{Item.time}</h2>
                                                     <p>
-                                                        <p>{Item.title}</p>
+                                                        <span>{Item.title}</span>
                                                         {Item.desc}
                                                     </p>
                                                     <div className={styles.imgcon} style={

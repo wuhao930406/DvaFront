@@ -41,7 +41,7 @@ class About extends Component {
 
     return (
       <div className={styles.container}>
-        <div className={styles.mostbanner} style={{ background: `url(./assets/images/aboutus.jpg) no-repeat center` }}>
+        <div className={styles.mostbanner} style={{ background: `url(./assets/images/aboutus.jpg) no-repeat center`,backgroundSize:"cover" }}>
           <div className={styles.minddle}>
             <SubTitles
               title="企业介绍"
@@ -88,7 +88,7 @@ class About extends Component {
                   section2.map((item, i) => {
 
                     return (
-                      <Link to="">
+                      <Link to="" key={i}>
                         <li>
                           <b></b>
                           <div>

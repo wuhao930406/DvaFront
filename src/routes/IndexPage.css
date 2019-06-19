@@ -650,7 +650,8 @@ button,img{
   font-size: 16px;
   color: #7a7a7a;
 }
-.developitem>p>p{
+.developitem>p>span{
+  display: block;
   font-size: 18px;
   color: #333
 }

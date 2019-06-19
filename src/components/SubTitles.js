@@ -36,7 +36,7 @@ const SubTitles = ({ ...props }) => {
                 {
                     props.advance && props.advance.map((Item, i) => {
                         return (
-                            <Col span={props.span?props.span:12}>
+                            <Col key={i} span={props.span?props.span:12}>
                                 <div className={styles.advance}>
                                     <h2 style={props.advancestyle?{...props.advancestyle.h2}:{}}>
                                         {Item.num.split(",")[0]}

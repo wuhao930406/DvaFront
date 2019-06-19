@@ -67,7 +67,7 @@ class Achiev extends Component {
 
         return (
             <div className={styles.container}>
-                <div className={styles.mostbanner} style={{ background: `url(./assets/images/archiev.jpg) no-repeat center` }}>
+                <div className={styles.mostbanner} style={{ background: `url(./assets/images/archiev.jpg) no-repeat center`,backgroundSize:"cover" }}>
                     <div className={styles.minddle}>
                         <SubTitles
                             title="企业成绩"
