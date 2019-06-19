@@ -20,7 +20,7 @@ const { Header, Content, Footer } = Layout;
 class IndexPage extends Component {
   state = {
     visible: false,
-    ifshow: false,
+    ifshow: true,
     current: "",
     team: [
       {
@@ -28,11 +28,11 @@ class IndexPage extends Component {
         name: "企业介绍"
       },
       {
-        key: "circle:2",
+        key: "circle:/main/develop",
         name: "发展历程"
       },
       {
-        key: "circle:3",
+        key: "circle:/main/achiev",
         name: "企业成绩"
       },
     ],
@@ -92,7 +92,9 @@ class IndexPage extends Component {
   handleClick = (e) => {
     this.setState({
       current: e.key,
+      ifshow: e.key.indexOf("service") != -1 || e.key.indexOf("circle") != -1
     },()=>{
+
       this.setNewState("redirect",{url:e.key.split(":")[1]})
     });
   };
@@ -117,8 +119,8 @@ class IndexPage extends Component {
                   }
                 >
                   <Menu.Item key="circle:/main/about">企业介绍</Menu.Item>
-                  <Menu.Item key="circle:2">发展历程</Menu.Item>
-                  <Menu.Item key="circle:3">企业成绩</Menu.Item>
+                  <Menu.Item key="circle:/main/develop">发展历程</Menu.Item>
+                  <Menu.Item key="circle:/main/achiev">企业成绩</Menu.Item>
                 </SubMenu>
                 <SubMenu
                   title={
@@ -256,6 +258,8 @@ class IndexPage extends Component {
                   <Col key={i} span={8} style={{ cursor: "pointer" }} onClick={() => {
                     this.setState({
                       current: item.key,
+                    },()=>{
+                      this.setNewState("redirect",{url:item.key.split(":")[1]})
                     })
                   }}>
                 <p style={{ textAlign: "center", color: current == item.key ? "#d95750" : "#666",height:54,display:"flex",justifyContent:"center",alignItems:"center",margin:0,fontSize:"0.7rem",padding:"0px 4px"}}>{item.name}</p>
@@ -264,8 +268,10 @@ class IndexPage extends Component {
               }{
                 this.state.current.indexOf("service") != -1 && service.map((item, i) => (
                   <Col key={i} span={8} style={{ cursor: "pointer" }} onClick={() => {
-                    this.setState({
+                     this.setState({
                       current: item.key,
+                    },()=>{
+                      this.setNewState("redirect",{url:item.key.split(":")[1]})
                     })
                   }}>
                     <p style={{ textAlign: "center", color: current == item.key ? "#d95750" : "#666",height:54,display:"flex",justifyContent:"center",alignItems:"center",margin:0,fontSize:"0.7rem",padding:"0px 4px" }}>{item.name}</p>
