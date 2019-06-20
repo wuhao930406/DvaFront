@@ -61,7 +61,7 @@ class About extends Component {
                 tstyle={{ fontSize: 36, color: "#cd2920" }}
                 lstyle={{ backgroundColor: "#cd2920" }}
                 desc="海学达国际教育集团是一家集国际课程输出、教育产品研发、教育信息化服务等于一体的大型综合性教育科技集团。作为国际教育行业的探索者和先行者，IAC将北美最领先的 “ALTSCHOOL”精英教育模式（比尔盖茨、扎克伯格鼎力推荐）首次引入中国，以个性化发展教育为基础，以教学实际为根基，与全球优秀教育机构、一流科技企业共同合作，在6大板块、13个领域深入研究，打造出全国领先的教育信息化核心技术和优质完善的国际教育体系。自成立以来，IAC国际教育始终致力于为世界上的每一个学生提供高端、平等的国际化学术交流平台和最优化的国际课程体系，帮助学生成长为主动学习与探索、善于反思与创新、具有国际视野和社会责任心的世界公民和未来青年领袖。"
-                dstyle={{ color: "#666", fontSize: "16px" }}
+                dstyle={{ color: "#333", fontSize: "16px" }}
               >
               </SubTitles>
               <div className={styles.flexrow}>
@@ -116,7 +116,7 @@ class About extends Component {
                 tstyle={{ fontSize: 18, color: "#d95750" }}
                 lstyle={{ backgroundColor: "#d95750" }}
                 desc="海学达国际教育总部位于xx，国际教育之路全面开启并顺势蔓延，给许多合作伙伴留下美誉"
-                dstyle={{ color: "#666", fontSize: "14px" }}
+                dstyle={{ color: "#333", fontSize: "14px" }}
               >
               </SubTitles>
               <div className={styles.ifont}>

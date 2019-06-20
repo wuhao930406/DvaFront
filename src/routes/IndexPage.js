@@ -50,7 +50,7 @@ class IndexPage extends Component {
         name: "北美离案私塾"
       },
       {
-        key: "service:4",
+        key: "service:/main/internation",
         name: "国际课程整体配套",
       },
       {
@@ -107,7 +107,13 @@ class IndexPage extends Component {
       <Layout style={{ display: "flex", flexDirection: "column", height: "100%" }}>
         <Header className={styles.indexheader}>
           <div className={styles.minddle}>
-            <Link to='/' ><img src="./assets/images/logos.png" alt="" /></Link>
+            <Link to='/' className={styles.logohover}>
+              <img src="./assets/images/logos.png" alt="" />
+              <img src="./assets/images/anicon.png" alt=""/>
+              <img src="./assets/images/anicon.png" alt=""/>
+              <img src="./assets/images/anicon.png" alt=""/>
+
+            </Link>
             <div className={styles.mediabig}>
               <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
                 <SubMenu
@@ -133,7 +139,7 @@ class IndexPage extends Component {
                   <Menu.Item key="service:1">海外实体学校</Menu.Item>
                   <Menu.Item key="service:2">北美在线学校</Menu.Item>
                   <Menu.Item key="service:3">北美离案私塾</Menu.Item>
-                  <Menu.Item key="service:4">国际课程整体配套</Menu.Item>
+                  <Menu.Item key="service:/main/internation">国际课程整体配套</Menu.Item>
                   <Menu.Item key="service:5">信息化校园平台</Menu.Item>
                   <Menu.Item key="service:6">大型国际教育活动</Menu.Item>
                 </SubMenu>

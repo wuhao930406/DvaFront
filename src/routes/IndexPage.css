@@ -59,6 +59,83 @@ ol, ul,li{
     text-indent:1.2rem
   }
 }
+
+.logohover{
+  display: block;
+  width: 168px;
+  height: 56px;
+  overflow: visible;
+  position: relative;
+}
+.logohover>img:first-child{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+.logohover>img+img{
+  width: 28px;
+  height: auto;
+  position: absolute;
+  left: 136px;
+  background-color: transparent;
+  top:0;
+  z-index: 1;
+}
+.logohover>img:nth-child(3){
+  width: 26px;
+}
+.logohover>img:nth-child(4){
+  width: 24px;
+}
+.logohover:hover img:nth-child(2){
+  animation: throw 1.2s ease-in-out 0s infinite alternate;
+}
+.logohover:hover img:nth-child(3){
+  animation: throw1 1.2s ease-in-out 0.2s infinite alternate;
+}
+.logohover:hover img:nth-child(4){
+  animation: throw2 1.2s ease-in-out 0.4s infinite alternate;
+}
+
+@keyframes throw{
+  from{
+    left: 136px;
+    opacity: 0;
+  }to{
+    left: 200px;
+    opacity: 0.8;
+  }
+}
+@keyframes throw1{
+  from{
+    left: 136px;
+    top:0px;
+    opacity: 0;
+  }to{
+    left: 210px;
+    top:18px;
+    opacity: 1;
+  }
+}
+@keyframes throw2{
+  from{
+    left: 136px;
+    top:0px;
+    opacity: 0;
+  }to{
+    left: 220px;
+    top:32px;
+    opacity: 1;
+  }
+}
+
+
+
+
+
 .container{
   background-color: #e8e8e8;
   overflow: hidden;
@@ -687,8 +764,65 @@ button,img{
   font-size: 0.6rem;
   padding-left: 6px
 }
-
-
+.modulehover{
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size:100%;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+.modulehover>p{
+  display: block;
+  position: absolute;
+  top:120px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 33px;
+  padding: 6px 4px;
+  width: 92%;
+  text-align: center;
+  color: #fff;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.4);
+  transition: all 0.4s
+}
+.modulehover>a{
+  display: block;
+  width: 92%;
+  height: 92%;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  transform: scale(1.6);
+  opacity: 0;
+  transition: all 0.4s
+}
+.modulehover:hover{
+  background-size: 108%;
+  transition: all 0.4s
+}
+.modulehover:hover a{
+  transform: scale(1);
+  opacity: 1;
+  transition: all 0.4s
+}
+.modulehover:hover p{
+  top:0px;
+  background-color: rgba(0,0,0,0);
+  transition: all 0.4s
+}
 
 
 

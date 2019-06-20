@@ -7,7 +7,7 @@ const SubTitles = ({ ...props }) => {
         <div>
             <h2 style={{
                 fontSize: 24,
-                fontWeight: "lighter",
+                fontWeight: "bloder",
                 color: "#333",
                 ...props.tstyle,
             }}>
