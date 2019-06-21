@@ -768,7 +768,6 @@ button,img{
   height: 200px;
   background-repeat: no-repeat;
   background-size:100%;
-  background-position: center;
   position: relative;
   overflow: hidden;
   transition: all 0.4s;
@@ -810,7 +809,7 @@ button,img{
   transition: all 0.4s
 }
 .modulehover:hover{
-  background-size: 108%;
+  background-size: 104%;
   transition: all 0.4s
 }
 .modulehover:hover a{
@@ -823,9 +822,39 @@ button,img{
   background-color: rgba(0,0,0,0);
   transition: all 0.4s
 }
+.cursorhover{
+  height: 330px;
+  padding: 2.4rem;
+  box-sizing: border-box;
+  transition: all 0.2s;
+  cursor: default;
+}
 
-
-
-
+.cursorhover .imgcontain{
+  width:64px;
+  height: 64px;
+  margin-bottom: 24px;
+}
+.cursorhover .imgcontain>img{
+  width: 100%;
+  height: 100%;
+}
+.cursorhover .imgcontain>img:last-child{
+  display: none;
+}
+.cursorhover:hover{
+  box-shadow: 0px 0px 16px #ddd;
+  z-index: 9999;
+  transition: all 0.2s
+}
+.cursorhover:hover h2 span{
+  color: #d95750 !important;
+}
+.cursorhover:hover .imgcontain>img:first-child{
+  display: none;
+}
+.cursorhover:hover .imgcontain>img:last-child{
+  display: block;
+}
 
 

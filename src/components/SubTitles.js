@@ -17,7 +17,7 @@ const SubTitles = ({ ...props }) => {
                 height: 1,
                 width: 30,
                 backgroundColor: "#000",
-                marginBottom: 18,
+                margin:"18px 0px 18px 0px",
                 ...props.lstyle,
             }}>
             </div>
