@@ -6,6 +6,8 @@ import About from './routes/index/About'
 import Develop from './routes/index/Develop'
 import Achiev from './routes/index/Achiev'
 import Internation from './routes/index/Internation'
+import School from './routes/index/School'
+import Activity from './routes/index/Activity'
 import NotFound from './routes/NotFound'
 
 
@@ -19,6 +21,8 @@ function IndexRouterConfig() {
         <Route path="/main/develop" component={Develop} />
         <Route path="/main/achiev" component={Achiev} />
         <Route path="/main/internation" component={Internation} />
+        <Route path="/main/school" component={School} />
+        <Route path="/main/activity" component={Activity} />
         <Route component={NotFound} />
 
       </Switch>

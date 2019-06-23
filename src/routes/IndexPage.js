@@ -54,11 +54,11 @@ class IndexPage extends Component {
         name: "国际课程整体配套",
       },
       {
-        key: "service:5",
+        key: "service:/main/school",
         name: "信息化校园平台"
       },
       {
-        key: "service:6",
+        key: "service:/main/activity",
         name: "大型国际教育活动",
       },
     ]
@@ -140,8 +140,8 @@ class IndexPage extends Component {
                   <Menu.Item key="service:2">北美在线学校</Menu.Item>
                   <Menu.Item key="service:3">北美离案私塾</Menu.Item>
                   <Menu.Item key="service:/main/internation">国际课程整体配套</Menu.Item>
-                  <Menu.Item key="service:5">信息化校园平台</Menu.Item>
-                  <Menu.Item key="service:6">大型国际教育活动</Menu.Item>
+                  <Menu.Item key="service:/main/school">信息化校园平台</Menu.Item>
+                  <Menu.Item key="service:/main/activity">大型国际教育活动</Menu.Item>
                 </SubMenu>
                 <Menu.Item key="team">
                   <Icon type="team" />
