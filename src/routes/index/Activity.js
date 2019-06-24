@@ -85,7 +85,7 @@ class Internation extends Component {
                 <div className={styles.mostbanner} style={{ background: `url(./assets/images/active.jpg) no-repeat center`, backgroundSize: "cover" }}>
                     <div className={styles.minddle}>
                         <SubTitles
-                            title="信息化校园平台"
+                            title="大型国际教育活动"
                             tstyle={{ fontSize: 36, color: "#fff" }}
                             lstyle={{ backgroundColor: "#fff" }}
                             desc="海学达国际教育致力于培养高素质国际人才"
@@ -98,7 +98,7 @@ class Internation extends Component {
                     <Row style={{ margin: 0, backgroundColor: "#fff" }}>
                         <Col span={24} style={{ padding: "2.4rem 2.6rem", backgroundColor: "#fff" }}>
                             <SubTitles
-                                title={<span>信息化校园平台简介 <Icon type="swap-right" /></span>}
+                                title={<span>大型国际教育活动简介 <Icon type="swap-right" /></span>}
                                 tstyle={{ fontSize: 24, color: "#cd2920" }}
                                 lstyle={{ backgroundColor: "transparent" }}
                                 desc="IAC国际教育致力于研究并分析国际教育最新态势及本土化发展，为K-12 阶段的国际教育在中国教育机构和学校的实施提供可行性指导及解决方案，为中国学生提供多样化的课外活动平台及能力培养机会，为中国家庭提供权威的国际教育资讯与理念。通过以下四大模块，构建中外人文交流与教育合作的平台，促进国际教育行业的可持续发展。"
