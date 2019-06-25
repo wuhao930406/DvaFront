@@ -13,6 +13,7 @@
     "moment": "^2.24.0",
     "qs": "^6.7.0",
     "react": "^16.2.0",
+    "react-amap": "^1.2.8",
     "react-dom": "^16.2.0",
     "react-free-scrollbar": "^0.3.4"
   },

@@ -8,6 +8,8 @@ import Achiev from './routes/index/Achiev'
 import Internation from './routes/index/Internation'
 import School from './routes/index/School'
 import Activity from './routes/index/Activity'
+import Partner from './routes/index/Partner'
+import Contact from './routes/index/Contact'
 import NotFound from './routes/NotFound'
 
 
@@ -23,6 +25,8 @@ function IndexRouterConfig() {
         <Route path="/main/internation" component={Internation} />
         <Route path="/main/school" component={School} />
         <Route path="/main/activity" component={Activity} />
+        <Route path="/main/partner" component={Partner} />
+        <Route path="/main/contact" component={Contact} />
         <Route component={NotFound} />
 
       </Switch>

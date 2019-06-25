@@ -22,7 +22,7 @@ const SubTitles = ({ ...props }) => {
             }}>
             </div>
             {
-                props.desc && <p style={{
+                props.desc && <div style={{
                     fontSize: 18,
                     color: "#999",
                     fontWeight: "lighter",
@@ -30,7 +30,7 @@ const SubTitles = ({ ...props }) => {
                     ...props.dstyle,
                 }}>
                     {props.desc}
-                </p>
+                </div>
             }
             <Row gutter={24} style={{margin:0,padding:0}}>
                 {

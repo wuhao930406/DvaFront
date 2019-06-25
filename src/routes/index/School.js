@@ -8,7 +8,7 @@ import { connect } from 'dva';
 @connect(({ example }) => ({
     example
 }))
-class Internation extends Component {
+class School extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -131,7 +131,7 @@ class Internation extends Component {
                         {
                             datas.map((item, i) => {
                                 return (
-                                    <Col xs={24} sm={24} md={12} lg={8} xl={8} xxl={8} className={styles.cursorhover} style={{ backgroundColor:i%2==0?"#f9f9f9":"#f0f0f0",height:400 }}>
+                                    <Col key={i} xs={24} sm={24} md={12} lg={8} xl={8} xxl={8} className={styles.cursorhover} style={{ backgroundColor:i%2==0?"#f9f9f9":"#f0f0f0",height:400 }}>
                                           <div className={styles.imgcontain}>
                                             <img src={`./assets/images/curs${i+1}.png`} alt=""/>
                                             <img src={`./assets/images/cur${i+1}.png`} alt=""/>
@@ -168,4 +168,4 @@ class Internation extends Component {
 }
 
 
-export default Internation;
+export default School;

@@ -100,7 +100,6 @@ class IndexPage extends Component {
   };
 
   render() {
-    const models = ['模块1', '模块2', '模块3', '模块4', '模块5', '模块6'];
     const w = document.body.clientWidth;
     const { ifshow, current, team, service } = this.state;
     return (
@@ -143,12 +142,12 @@ class IndexPage extends Component {
                   <Menu.Item key="service:/main/school">信息化校园平台</Menu.Item>
                   <Menu.Item key="service:/main/activity">大型国际教育活动</Menu.Item>
                 </SubMenu>
-                <Menu.Item key="team">
+                <Menu.Item key="team:partner">
                   <Icon type="team" />
                   合作伙伴
               </Menu.Item>
 
-                <Menu.Item key="mail">
+                <Menu.Item key="mail:contact">
                   <Icon type="mail" />
                   联系我们
               </Menu.Item>
@@ -244,8 +243,10 @@ class IndexPage extends Component {
             </Col>
             <Col xs={6} sm={6} md={6} lg={6} xl={6} xxl={6} className={current.indexOf("team") != -1 ? styles.indexcols : styles.indexcol} onClick={() => {
               this.setState({
-                current: "team",
+                current: "team:partner",
                 ifshow: false
+              },()=>{
+                this.setNewState("redirect",{url:"partner"})
               })
             }}>
               <p style={{ textAlign: "center" }}>合作伙伴</p>
@@ -253,7 +254,9 @@ class IndexPage extends Component {
             <Col xs={6} sm={6} md={6} lg={6} xl={6} xxl={6} className={current.indexOf("mail") != -1 ? styles.indexcols : styles.indexcol} onClick={() => {
               this.setState({
                 ifshow: false,
-                current: "mail",
+                current: "mail:/main/contact",
+              },()=>{
+                this.setNewState("redirect",{url:"contact"})
               })
             }}>
               <p style={{ textAlign: "center" }}>联系我们</p>
