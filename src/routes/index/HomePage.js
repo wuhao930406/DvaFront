@@ -12,6 +12,15 @@ class HomePage extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      getall:[
+        {
+          url:"./assets/images/bac1.jpg",
+        },
+        {
+          url:"./assets/images/bac2.png",
+        },
+
+      ],
       section1: [
         {
           url: "./assets/images/index_icon1.png",
@@ -91,8 +100,8 @@ class HomePage extends Component {
   }
 
   render() {
-    const { getall } = this.props.example,
-      { section1, section2 } = this.state;
+    const { /*getall*/ } = this.props.example,
+      { section1, section2,getall } = this.state;
 
     return (
       <Row style={{ margin: 0 }}>
@@ -102,6 +111,7 @@ class HomePage extends Component {
               getall &&
               getall.map((Item, i) => {
                 let imgurl = `http://localhost:8000/edu${Item.url}`
+                imgurl = Item.url;
                 return (
                   Item.jumpurl ?
                     <Link to={Item.jumpurl} key={i} className={styles.banner} >
