@@ -45,7 +45,8 @@ ol, ul,li{
   padding:12px 12px 0px 12px;
   font-size:0.8rem;
   color:#333;
-  text-indent:1.6rem
+  text-indent:1.6rem;
+  white-space: pre-wrap;
 }
 @media (min-width: 1000px) and (max-width: 1122px) {
   .fontchange{

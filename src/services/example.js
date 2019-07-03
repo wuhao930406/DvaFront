@@ -8,3 +8,21 @@ export async function getall(params) {
     method: 'get',
   })
 }
+//index_adv 
+export async function getadv(params) {
+  return request(`edu/page/getadv`,{
+    method: 'get',
+  })
+}
+//index aboutus
+export async function getaboutus(params) {
+  return request(`edu/page/getaboutus`,{
+    method: 'get',
+  })
+}
+//index service
+export async function getservice(params) {
+  return request(`edu/page/getservice`,{
+    method: 'get',
+  })
+}
