@@ -64,7 +64,7 @@ class About extends Component {
                 dstyle={{ color: "#333", fontSize: "16px" }}
               >
               </SubTitles>
-              <div className={styles.flexrow}>
+              <div className={styles.flexrow} style={{marginTop:18}}>
                 <a href="http://www.baidu.com">
                   <img style={{ width: 20, marginRight: 20 }} src="./assets/images/email.png" alt="" />
                 </a>

@@ -46,7 +46,7 @@ class HomePage extends Component {
             {
               getall &&
               getall.map((Item, i) => {
-                let imgurl = `http://localhost:8000/edu${Item.url}`
+                let imgurl = `http://localhost:3000/edu${Item.url}`
                 return (
                   Item.jumpurl ?
                     <Link to={Item.jumpurl} key={i} className={styles.banner} >
