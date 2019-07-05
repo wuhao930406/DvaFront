@@ -1,4 +1,4 @@
-import { getall, getadv, getaboutus,getservice } from "../services/example";
+import { getall, getadv, getaboutus, getservice, getenv } from "../services/example";
 import { routerRedux } from 'dva/router'
 
 export default {
@@ -8,10 +8,19 @@ export default {
     getall: [],
     getadv: [],
     getaboutus: {},
-    getservice:[]
+    getservice: [],
+    getenv:[]
   },
 
   effects: {
+    * getenv({ payload }, { call, put }) {
+      let res = yield call(getenv, payload)
+      yield put({
+        type: 'updateState',
+        payload: { getenv: res.data ? res.data : [] }
+      })
+      return res.next
+    },
     * getservice({ payload }, { call, put }) {
       let res = yield call(getservice, payload)
       yield put({
@@ -20,7 +29,7 @@ export default {
       })
       return res.next
     },
-    
+
     * getall({ payload }, { call, put }) {
       let res = yield call(getall, payload)
       yield put({

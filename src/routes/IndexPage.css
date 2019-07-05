@@ -698,6 +698,7 @@ button,img{
 .pichover{
   position: relative;
   overflow: hidden;
+  background-size: cover !important;
 }
 .pichover p{
   width: 100%;
@@ -874,4 +875,6 @@ button,img{
   background-color: rgb(255, 255, 255,1);
   transition: all 0.4s;
 }
-
+.prewarp{
+  white-space:pre-wrap !important;
+}

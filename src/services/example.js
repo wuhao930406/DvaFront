@@ -26,3 +26,9 @@ export async function getservice(params) {
     method: 'get',
   })
 }
+//work env
+export async function getenv(params) {
+  return request(`edu/about/getenv`,{
+    method: 'get',
+  })
+}
