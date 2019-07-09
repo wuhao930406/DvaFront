@@ -32,3 +32,15 @@ export async function getenv(params) {
     method: 'get',
   })
 }
+//develop
+export async function getdevlop(params) {
+  return request(`edu/about/getdevlop`,{
+    method: 'get',
+  })
+}
+//getachieve
+export async function getachieve(params) {
+  return request(`edu/about/getachieve`,{
+    method: 'get',
+  })
+}

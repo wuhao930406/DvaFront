@@ -40,13 +40,13 @@ const SubTitles = ({ ...props }) => {
                             <Col key={i} span={props.span?props.span:12}>
                                 <div className={styles.advance}>
                                     <h2 style={props.advancestyle?{...props.advancestyle.h2}:{}}>
-                                        {Item.num.split(",")[0]}
+                                        {Item.num}
                                         <span>
-                                        {Item.num.split(",")[1]}
+                                        {Item.leaf}
                                         </span>
                                     </h2>
                                     <p style={props.advancestyle?{...props.advancestyle.p}:{}}>
-                                        {Item.name}
+                                        {Item.content}
                                     </p>
                                 </div>
                             
