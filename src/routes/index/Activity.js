@@ -5,6 +5,22 @@ import React, { Component } from 'react';
 import styles from '../IndexPage.css';
 import { connect } from 'dva';
 
+function FunData(e,step){
+    let proportion = step; //按照比例切割
+    let num = 0;
+    let _data =[];
+    for(let i=0;i<e.length;i++){
+        if(i % proportion == 0 && i != 0){
+            _data.push(e.slice(num,i));
+            num = i;
+        }
+        if((i+1)==e.length){
+            _data.push(e.slice(num,(i+1)));
+        }
+    }
+    return _data;
+}
+
 @connect(({ example }) => ({
     example
 }))
