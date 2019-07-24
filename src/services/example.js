@@ -44,3 +44,93 @@ export async function getachieve(params) {
     method: 'get',
   })
 }
+
+//getcourse
+export async function getcourse(params) {
+  return request(`edu/service/getcourse`,{
+    method: 'get',
+  })
+}
+//getcourse
+export async function getschool(params) {
+  return request(`edu/service/getschool`,{
+    method: 'get',
+  })
+}
+
+//getcourse
+export async function getedu(params) {
+  return request(`edu/service/getedu`,{
+    method: 'get',
+  })
+}
+//getcourse
+export async function getcooperate(params) {
+  return request(`edu/cooperate/getcooperate`,{
+    method: 'get',
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

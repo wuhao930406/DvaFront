@@ -1,28 +1,29 @@
-import { Row, Col, Card, Icon, PageHeader, Carousel, Timeline } from 'antd';
+import { Row, Col, Card, Icon, PageHeader, Carousel, Timeline, Spin } from 'antd';
 import { Link, router } from 'dva/router';
 import SubTitles from '../../components/SubTitles'
 import React, { Component } from 'react';
 import styles from '../IndexPage.css';
 import { connect } from 'dva';
 
-function FunData(e,step){
+function FunData(e, step) {
     let proportion = step; //按照比例切割
     let num = 0;
-    let _data =[];
-    for(let i=0;i<e.length;i++){
-        if(i % proportion == 0 && i != 0){
-            _data.push(e.slice(num,i));
+    let _data = [];
+    for (let i = 0; i < e.length; i++) {
+        if (i % proportion == 0 && i != 0) {
+            _data.push(e.slice(num, i));
             num = i;
         }
-        if((i+1)==e.length){
-            _data.push(e.slice(num,(i+1)));
+        if ((i + 1) == e.length) {
+            _data.push(e.slice(num, (i + 1)));
         }
     }
     return _data;
 }
 
-@connect(({ example }) => ({
-    example
+@connect(({ example, loading }) => ({
+    example,
+    loads: loading.effects['example/getedu']
 }))
 class Internation extends Component {
     constructor(props) {
@@ -89,164 +90,118 @@ class Internation extends Component {
                 }
 
             ]
-
         }
     }
 
+    /* dispatch获取 */
+    setNewState(type, value, fn) {
+        const { dispatch } = this.props;
+        dispatch({
+            type: 'example/' + type,
+            payload: value
+        }).then((res) => {
+            if (res) {
+                fn ? fn(res) : null
+            }
+        })
+    }
+
+    componentDidMount() {
+        this.setNewState("getedu")
+    }
+
+
     render() {
-        let { data, datas } = this.state;
+        let { data, datas } = this.state, { getedu } = this.props.example;
 
         return (
-            <div className={styles.container}>
-                <div className={styles.mostbanner} style={{ background: `url(./assets/images/active.jpg) no-repeat center`, backgroundSize: "cover" }}>
-                    <div className={styles.minddle}>
-                        <SubTitles
-                            title="大型国际教育活动"
-                            tstyle={{ fontSize: 36, color: "#fff" }}
-                            lstyle={{ backgroundColor: "#fff" }}
-                            desc="海学达国际教育致力于培养高素质国际人才"
-                            dstyle={{ backgroundColor: "rgba(0,0,0,0.1)", padding: 8, color: "#fff" }}
-                        >
-                        </SubTitles>
+            <Spin spinning={this.props.loads}>
+                <div className={styles.container}>
+                    <div className={styles.mostbanner} style={{ background: `url(./assets/images/active.jpg) no-repeat center`, backgroundSize: "cover" }}>
+                        <div className={styles.minddle}>
+                            <SubTitles
+                                title="大型国际教育活动"
+                                tstyle={{ fontSize: 36, color: "#fff" }}
+                                lstyle={{ backgroundColor: "#fff" }}
+                                desc="海学达国际教育致力于培养高素质国际人才"
+                                dstyle={{ backgroundColor: "rgba(0,0,0,0.1)", padding: 8, color: "#fff" }}
+                            >
+                            </SubTitles>
+                        </div>
                     </div>
-                </div>
-                <div className={styles.minddle} style={{ paddingTop: 20 }}>
-                    <Row style={{ margin: 0, backgroundColor: "#fff" }}>
-                        <Col span={24} style={{ padding: "2.4rem 2.6rem", backgroundColor: "#fff" }}>
-                            <SubTitles
-                                title={<span>大型国际教育活动简介 <Icon type="swap-right" /></span>}
-                                tstyle={{ fontSize: 24, color: "#cd2920" }}
-                                lstyle={{ backgroundColor: "transparent" }}
-                                desc="IAC国际教育致力于研究并分析国际教育最新态势及本土化发展，为K-12 阶段的国际教育在中国教育机构和学校的实施提供可行性指导及解决方案，为中国学生提供多样化的课外活动平台及能力培养机会，为中国家庭提供权威的国际教育资讯与理念。通过以下四大模块，构建中外人文交流与教育合作的平台，促进国际教育行业的可持续发展。"
-                                dstyle={{ color: "#333", fontSize: "14px" }}
-                            >
-                            </SubTitles>
-                            <div className={styles.flexrow} style={{ marginTop: 60 }}>
-                                <a href="http://www.baidu.com">
-                                    <img style={{ width: 20, marginRight: 20 }} src="./assets/images/email.png" alt="" />
-                                </a>
-                                <a href="http://www.baidu.com">
-                                    <img style={{ width: 20 }} src="./assets/images/message.png" alt="" />
-                                </a>
-                            </div>
+                    <div className={styles.minddle} style={{ paddingTop: 20 }}>
+                        <Row style={{ margin: 0, backgroundColor: "#fff" }}>
+                            <Col span={24} style={{ padding: "2.4rem 2.6rem", backgroundColor: "#fff" }}>
+                                <SubTitles
+                                    title={<span>大型国际教育活动简介 <Icon type="swap-right" /></span>}
+                                    tstyle={{ fontSize: 24, color: "#cd2920" }}
+                                    lstyle={{ backgroundColor: "transparent" }}
+                                    desc={getedu.edudesc}
+                                    dstyle={{ color: "#333", fontSize: "14px" }}
+                                >
+                                </SubTitles>
+                                <div className={styles.flexrow} style={{ marginTop: 60 }}>
+                                    <a href="http://www.baidu.com">
+                                        <img style={{ width: 20, marginRight: 20 }} src="./assets/images/email.png" alt="" />
+                                    </a>
+                                    <a href="http://www.baidu.com">
+                                        <img style={{ width: 20 }} src="./assets/images/message.png" alt="" />
+                                    </a>
+                                </div>
 
-                        </Col>
-                    </Row>
+                            </Col>
+                        </Row>
 
 
-                    <Row style={{ margin: 0, marginTop: 20, backgroundColor: "#fff" }}>
-                        <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12} style={{ padding: "2.6rem 2.6rem 3rem 2.6rem"}}>
-                            <SubTitles
-                                title={<span>国际认证师资培训 </span>}
-                                tstyle={{ fontSize: 18, color: "#d95750" }}
-                                lstyle={{ backgroundColor: "#d95750" }}
-                                desc="由美国大学理事会、上海交通大学等各国教育专家组成的国际教育研究与师资培训中心，通过对中国与西方国家（美、加、英、澳等）在基础教育阶段在教育理念、教育政策、教育实践等不同纬度的比较和研究，为中国基础教育和教学的改良与改革提供本土化的国际课程设计与教学方案以及师资培训，从而促进国外高等教育与中国基础教育的衔接、北美学历课程的本土化发展，以及中国教师的业务素养与全球视野。"
-                                dstyle={{ fontSize: 14 }}
-                            >
-                            </SubTitles>
-                            <Row style={{marginTop:24}}>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/shizipeixun/1.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/shizipeixun/2.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/shizipeixun/3.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/shizipeixun/4.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/shizipeixun/5.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/shizipeixun/6.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                            </Row>
-                        </Col>
+                        <Row style={{ margin: 0, marginTop: 20, backgroundColor: "#fff" }}>
+                            {
+                                getedu.epro ?
+                                    getedu.epro.map((item, i) => {
+                                        return (<Col key={i} xs={24} sm={24} md={12} lg={12} xl={12} xxl={12} style={{height:560,overflowY:"auto", padding: "2.6rem 2.6rem 3rem 2.6rem",backgroundColor: (i-1)%4==0||(i-2)%4==0?"#7a7a7a":"#fff" }}>
+                                            <SubTitles
+                                                title={<span>{item.title}</span>}
+                                                tstyle={{ fontSize: 18, color:(i-1)%4==0||(i-2)%4==0?"#fff": "#d95750" }}
+                                                lstyle={{ backgroundColor: (i-1)%4==0||(i-2)%4==0?"#fff":"#d95750" }}
+                                                desc={item.desc}
+                                                dstyle={{ fontSize: 14,color:(i-1)%4==0||(i-2)%4==0?"#f0f0f0":"#333"  }}
+                                            >
+                                            </SubTitles>
+                                            <Row style={{ marginTop: 24 }}>
+                                                {
+                                                    item.picarr?
+                                                    item.picarr.split("|").map((itemz,is)=>{
+                                                       return ( <Col key={is} xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(/edu${itemz}) no-repeat center`, backgroundSize: "cover" }}>
+                                                       </Col>) 
+                                                    }):null
 
-                        <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12} style={{ padding: "2.6rem 2.6rem 5rem 2.6rem",backgroundColor:"#7a7a7a"}}>
-                            <SubTitles
-                                title={<span>教育公益事业发展 </span>}
-                                tstyle={{ fontSize: 18, color: "#fff" }}
-                                lstyle={{ backgroundColor: "#fff" }}
-                                desc="凭借北美公立教育系统的教育学者的广泛影响力，以及海外名校校友的榜样力量，通过大型公益讲座、定期走访、互联网传播等途径，分享第一手的海外升学、生活和文化资讯。通过教育传递公益之美，促进中西方教育的交流互动和跨文化传播，并让更多学生及家长了解国际教育的价值，获得更丰富的教育经历。"
-                                dstyle={{ fontSize: 14,color:"#f0f0f0" }}
-                            >
-                            </SubTitles>
-                            <Row style={{marginTop:24}}>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/gongyi/1.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/gongyi/2.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/gongyi/3.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/gongyi/4.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/gongyi/5.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/gongyi/6.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                            </Row>
-                        </Col>
-                    </Row>
+                                                }
+                                               
+                                            </Row>
+                                        </Col>
+                                        )
 
-                    <Row style={{ margin: 0,backgroundColor: "#fff" }}>
-                    <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12} style={{ padding: "2.6rem 2.6rem 5rem 2.6rem",backgroundColor:"#7a7a7a"}}>
-                            <SubTitles
-                                title={<span>青少年海外游学活动 </span>}
-                                tstyle={{ fontSize: 18, color: "#fff" }}
-                                lstyle={{ backgroundColor: "#fff" }}
-                                desc="基于国际游学政策指引，针对学生“知行结合”的游学需求，每年联合大型国际游学机构、北美公立教育局和世界顶尖大学，开展国际学生集体旅行、集中食宿方式进行研究性学习和旅行体验相结合的国际游学活动。旨在通过定期的海外游学活动，提升学生的英文素颜，开拓国际世界，结交世界好友。 "
-                                dstyle={{ fontSize: 14,color:"#f0f0f0" }}
-                            >
-                            </SubTitles>
-                            <Row style={{marginTop:24}}>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/youxue/1.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/youxue/2.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/youxue/3.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/youxue/4.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/youxue/5.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/youxue/6.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                            </Row>
-                        </Col>
-                        <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12} style={{ padding: "2.6rem 2.6rem 3rem 2.6rem"}}>
-                            <SubTitles
-                                title={<span>国际竞赛活动组办 </span>}
-                                tstyle={{ fontSize: 18, color: "#d95750" }}
-                                lstyle={{ backgroundColor: "#d95750" }}
-                                desc="搭建高水平的国际竞赛平台，推广高水平国际竞赛和跨文化交流。IAC国际教育以项目学习为基础，以能力提升为宗旨，以国际竞赛为出口，专注于挖掘和拓展青少年的潜能，帮助中国青少年提高科学素养、增强动手能力、融汇跨学科知识、具备国际视野与合作能力。"
-                                dstyle={{ fontSize: 14 }}
-                            >
-                            </SubTitles>
-                            <Row style={{marginTop:24}}>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/jingsaihuodong/1.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/jingsaihuodong/2.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/jingsaihuodong/3.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/jingsaihuodong/4.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/jingsaihuodong/5.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ height: 100, background: `url(http://iaceducation.com/src/images/jingsaihuodong/6.png) no-repeat center`, backgroundSize: "cover" }}>
-                                </Col>
-                            </Row>
-                        </Col>
 
-                        
-                    </Row>
+                                    }) : null
+
+                            }
+
+
+                            
+
+
+                        </Row>
+                    </div>
+
+
+
+
+
+
                 </div>
 
+            </Spin>
+        )
 
-                    
-
-
-
-            </div>)
- 
     }
 
 

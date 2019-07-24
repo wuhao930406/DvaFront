@@ -1,12 +1,13 @@
-import { Row, Col, Card, Icon, PageHeader, Carousel, Timeline } from 'antd';
+import { Row, Col, Card, Icon, PageHeader, Carousel, Timeline, Spin } from 'antd';
 import { Link, router } from 'dva/router';
 import SubTitles from '../../components/SubTitles'
 import React, { Component } from 'react';
 import styles from '../IndexPage.css';
 import { connect } from 'dva';
 
-@connect(({ example }) => ({
-    example
+@connect(({ example, loading }) => ({
+    example,
+    loads: loading.effects['example/getcooperate']
 }))
 class Partner extends Component {
     constructor(props) {
@@ -59,133 +60,139 @@ class Partner extends Component {
                 }
 
             ]
-
         }
     }
 
+    /* dispatch获取 */
+    setNewState(type, value, fn) {
+        const { dispatch } = this.props;
+        dispatch({
+            type: 'example/' + type,
+            payload: value
+        }).then((res) => {
+            if (res) {
+                fn ? fn(res) : null
+            }
+        })
+    }
+
+    componentDidMount() {
+        this.setNewState("getcooperate")
+    }
+
     render() {
-        let { data, datas } = this.state;
+        let { data, datas } = this.state, { getcooperate } = this.props.example;
 
         return (
-            <div className={styles.container}>
-                <div className={styles.mostbanner} style={{ background: `url(./assets/images/partner.jpg) no-repeat center`, backgroundSize: "cover" }}>
-                    <div className={styles.minddle}>
-                        <SubTitles
-                            title="合作伙伴"
-                            tstyle={{ fontSize: 36, color: "#fff",textShadow:"1px 1px 4px #000" }}
-                            lstyle={{ backgroundColor: "#fff" }}
-                            desc="海学达国际教育致力于培养高素质国际人才"
-                            dstyle={{ backgroundColor: "rgba(0,0,0,0.4)", padding: 8, color: "#fff" }}
-                        >
-                        </SubTitles>
+            <Spin spinning={this.props.loads}>
+                <div className={styles.container}>
+                    <div className={styles.mostbanner} style={{ background: `url(./assets/images/partner.jpg) no-repeat center`, backgroundSize: "cover" }}>
+                        <div className={styles.minddle}>
+                            <SubTitles
+                                title="合作伙伴"
+                                tstyle={{ fontSize: 36, color: "#fff", textShadow: "1px 1px 4px #000" }}
+                                lstyle={{ backgroundColor: "#fff" }}
+                                desc="海学达国际教育致力于培养高素质国际人才"
+                                dstyle={{ backgroundColor: "rgba(0,0,0,0.4)", padding: 8, color: "#fff" }}
+                            >
+                            </SubTitles>
+                        </div>
+                    </div>
+                    <div className={styles.minddle} style={{ paddingTop: 20 }}>
+                        <Row style={{ margin: 0, backgroundColor: "#fff" }}>
+                            <Col span={24} style={{ padding: "2.4rem 2.6rem", backgroundColor: "#fff" }}>
+                                <SubTitles
+                                    title={<span>我们的优势 <Icon type="arrow-down" /></span>}
+                                    tstyle={{ fontSize: 24, color: "#cd2920" }}
+                                    lstyle={{ backgroundColor: "transparent" }}
+                                >
+                                </SubTitles>
+                                {
+                                    getcooperate.adv ?
+                                        getcooperate.adv.map((item, i) => {
+                                            return (
+                                                <Col key={i} xs={24} sm={24} md={12} lg={8} xl={8} xxl={8} className={styles.cursorhover} style={{ backgroundColor: i % 2 == 0 ? "#f9f9f9" : "#f0f0f0", height: 400 }}>
+                                                    <div className={styles.imgcontain}>
+                                                        <img src={`./assets/images/curs${i + 1}.png`} alt="" />
+                                                        <img src={`./assets/images/cur${i + 1}.png`} alt="" />
+                                                    </div>
+
+                                                    <SubTitles
+                                                        title={<span>{item.title}</span>}
+                                                        tstyle={{ fontSize: 16, color: "#333" }}
+                                                        lstyle={{ backgroundColor: "transparent" }}
+                                                        desc={item.desc}
+                                                        dstyle={{ fontSize: 14 }}
+                                                    >
+                                                    </SubTitles>
+
+                                                </Col>
+                                            )
+                                        }) : null
+                                }
+                            </Col>
+                        </Row>
+
+
+                        <Row style={{ margin: 0, marginTop: 20, background: `url(./assets/images/partnerbac.jpg) no-repeat right bottom`, backgroundSize: "contain", backgroundColor: "#666" }}>
+                            <Col span={24} style={{ padding: "2.6rem 2.6rem 3rem 2.6rem" }}>
+                                <SubTitles
+                                    title={<span> 合作模式 </span>}
+                                    tstyle={{ fontSize: 18, color: "#fff" }}
+                                    lstyle={{ backgroundColor: "#fff" }}
+                                    desc="IAC国际教育集团多年来已在全球积累无数成功办学经验可确保我们的合作方规避投资办学的失败风险，省时省力低投入高效的开展国际教育事业。"
+                                    dstyle={{ fontSize: 14, color: "#fff" }}
+                                >
+                                </SubTitles>
+                                <Row style={{ marginTop: 24, backgroundColor: "rgba(0,0,0,0.6)" }}>
+                                    {
+                                        getcooperate.model ?
+                                            getcooperate.model.map((item, i) => {
+                                                return (
+                                                    i % 2 !== 0 ?
+                                                        <Col key={i} xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} style={{ backgroundColor: "rgba(255,255,255,0.9)", padding: 24 }}>
+                                                            <SubTitles
+                                                                title={<span> {item.title} </span>}
+                                                                tstyle={{ fontSize: 16, color: "#333" }}
+                                                                lstyle={{ backgroundColor: "#fff", display: "none" }}
+                                                                desc={<ul>
+                                                                    {item.desc}
+                                                                    <Link to="/" style={{ marginTop: 18, color: "#666", display: "block" }}>查看更多 <Icon type="arrow-right" /></Link>
+                                                                </ul>}
+                                                                dstyle={{ fontSize: 12, color: "#666" }}
+                                                            >
+                                                            </SubTitles>
+                                                        </Col>
+                                                        :
+                                                        <Col key={i} xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} style={{ padding: 24 }}>
+                                                            <SubTitles
+                                                                title={<span> {item.title}  </span>}
+                                                                tstyle={{ fontSize: 16, color: "#fff" }}
+                                                                lstyle={{ backgroundColor: "#fff", display: "none" }}
+                                                                desc={<ul>
+                                                                    {item.desc}
+                                                                    <Link to="/" style={{ marginTop: 18, color: "#f0f0f0", display: "block" }}>查看更多 <Icon type="arrow-right" /></Link>
+                                                                </ul>}
+                                                                dstyle={{ fontSize: 12, color: "#ddd" }}
+                                                            >
+                                                            </SubTitles>
+
+                                                        </Col>
+                                                )
+
+                                            }) : null
+                                    }
+
+
+
+                                </Row>
+                            </Col>
+
+
+                        </Row>
                     </div>
                 </div>
-                <div className={styles.minddle} style={{ paddingTop: 20 }}>
-                    <Row style={{ margin: 0, backgroundColor: "#fff" }}>
-                        <Col span={24} style={{ padding: "2.4rem 2.6rem", backgroundColor: "#fff" }}>
-                            <SubTitles
-                                title={<span>我们的优势 <Icon type="arrow-down" /></span>}
-                                tstyle={{ fontSize: 24, color: "#cd2920" }}
-                                lstyle={{ backgroundColor: "transparent" }}
-                            >
-                            </SubTitles>
-                            {
-                                datas.map((item, i) => {
-                                    return (
-                                        <Col key={i} xs={24} sm={24} md={12} lg={8} xl={8} xxl={8} className={styles.cursorhover} style={{ backgroundColor:i%2==0?"#f9f9f9":"#f0f0f0",height:400 }}>
-                                            <div className={styles.imgcontain}>
-                                                <img src={`./assets/images/curs${i+1}.png`} alt=""/>
-                                                <img src={`./assets/images/cur${i+1}.png`} alt=""/>
-                                            </div>
-
-                                            <SubTitles
-                                                    title={<span>{item.title}</span>}
-                                                    tstyle={{ fontSize: 16, color: "#333" }}
-                                                    lstyle={{ backgroundColor: "transparent" }}
-                                                    desc={item.desc}
-                                                    dstyle={{fontSize:14}}
-                                                >
-                                                </SubTitles>
-
-                                        </Col>
-                                    )
-                                })
-                            }
-                        </Col>
-                    </Row>
-
-
-                    <Row style={{ margin: 0, marginTop: 20, background: `url(./assets/images/partnerbac.jpg) no-repeat right bottom`, backgroundSize: "contain", backgroundColor: "#666" }}>
-                        <Col span={24} style={{ padding: "2.6rem 2.6rem 3rem 2.6rem"}}>
-                            <SubTitles
-                                title={<span> 合作模式 </span>}
-                                tstyle={{ fontSize: 18, color: "#fff" }}
-                                lstyle={{ backgroundColor: "#fff" }}
-                                desc="IAC国际教育集团多年来已在全球积累无数成功办学经验可确保我们的合作方规避投资办学的失败风险，省时省力低投入高效的开展国际教育事业。"
-                                dstyle={{ fontSize: 14,color:"#fff" }}
-                            >
-                            </SubTitles>
-                            <Row style={{marginTop:24,backgroundColor:"rgba(0,0,0,0.6)"}}>
-                                <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} style={{padding:24}}>
-                                    <SubTitles
-                                        title={<span> 1.K12国际学校共建 </span>}
-                                        tstyle={{ fontSize: 16, color: "#fff" }}
-                                        lstyle={{ backgroundColor: "#fff",display:"none" }}
-                                        desc={<ul>
-                                            <li>PPP模式</li>
-                                            <li>教育+企业模式</li>
-                                            <Link to="/" style={{marginTop:18,color:"#f0f0f0",display:"block"}}>查看更多 <Icon type="arrow-right" /></Link>
-                                            </ul>}
-                                        dstyle={{ fontSize: 12,color:"#ddd" }}
-                                    >
-                                    </SubTitles>
-
-                                </Col>
-                                <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} style={{backgroundColor:"rgba(255,255,255,0.9)",padding:24}}>  
-                                    <SubTitles
-                                        title={<span> 2.学校国际化提升 </span>}
-                                        tstyle={{ fontSize: 16, color: "#333" }}
-                                        lstyle={{ backgroundColor: "#fff",display:"none" }}
-                                        desc={<ul>
-                                            <li>中外知名教育品牌搭建</li>
-                                            <li>课程体系、管理体系、学生服务体系植入</li>
-                                            <li>海内外研学项目</li>
-                                            <li>外教招募、海内外教师培训、教学质量监控与评估</li>
-                                            <Link to="/" style={{marginTop:18,color:"#666",display:"block"}}>查看更多 <Icon type="arrow-right" /></Link>
-                                            </ul>}
-                                        dstyle={{ fontSize: 12,color:"#666" }}
-                                    >
-                                    </SubTitles>
-                                </Col>
-                                <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} style={{padding:24}}>
-                                       <SubTitles
-                                        title={<span> 3.线下中心加盟合资 </span>}
-                                        tstyle={{ fontSize: 16, color: "#fff" }}
-                                        lstyle={{ backgroundColor: "#fff",display:"none" }}
-                                        desc={<ul>
-                                            <li>布局高端线下学习中心，打造纯正北美离岸高中</li>
-                                            <li>开展全日制北美学历教育，浸入式学习体验</li>
-                                            <li>提供背景提升方案及一站式留学申请服务</li>
-                                            <Link to="/" style={{marginTop:18,color:"#f0f0f0",display:"block"}}>查看更多 <Icon type="arrow-right" /></Link>
-                                            </ul>}
-                                        dstyle={{ fontSize: 12,color:"#ddd" }}
-                                    >
-                                    </SubTitles>
-                                </Col>
-                            </Row>
-                        </Col>
-
-                        
-                    </Row>
-                </div>
-
-
-                    
-
-
-
-            </div>)
- 
+            </Spin>)
     }
 
 

@@ -769,7 +769,7 @@ button,img{
 .modulehover{
   height: 200px;
   background-repeat: no-repeat;
-  background-size:100%;
+  background-size:cover;
   position: relative;
   overflow: hidden;
   transition: all 0.4s;
@@ -811,7 +811,7 @@ button,img{
   transition: all 0.4s
 }
 .modulehover:hover{
-  background-size: 104%;
+  background-size: cover;
   transition: all 0.4s
 }
 .modulehover:hover a{
