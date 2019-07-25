@@ -99,9 +99,14 @@ class IndexPage extends Component {
     });
   };
 
+  componentDidMount(){
+    this.setNewState("getcontact")
+  }
+
+
   render() {
     const w = document.body.clientWidth;
-    const { ifshow, current, team, service } = this.state;
+    const { ifshow, current, team, service } = this.state,{getcontact}=this.props.example;
     return (
       <Layout style={{ display: "flex", flexDirection: "column", height: "100%" }}>
         <Header className={styles.indexheader}>
@@ -174,10 +179,10 @@ class IndexPage extends Component {
                           <h2>公司总部</h2>
                           <div></div>
                           <ul>
-                            <li>地址：xxxxxxxxxxxxxx</li>
-                            <li>电话：16248974154</li>
+                            <li>地址：{getcontact.contact?getcontact.contact.address:""}</li>
+                            <li>电话：{getcontact.contact?getcontact.contact.phone:""}</li>
                           </ul>
-                          <Button href='https://j.map.baidu.com/KaghG' target="_blank" style={{ margin: "0px auto", display: "block", maxWidth: 140 }} icon="compass">
+                          <Button href={getcontact.contact?getcontact.contact.tomap:""} target="_blank" style={{ margin: "0px auto", display: "block", maxWidth: 140 }} icon="compass">
                             导航
                         </Button>
                         </div>
@@ -187,14 +192,14 @@ class IndexPage extends Component {
                         <div className={styles.indexstyle}>
                           <h2>微信公众号</h2>
                           <div></div>
-                          <img src="./assets/images/qrcode.png" alt="" />
+                          <img src={`/edu${getcontact.contact?getcontact.contact.qrcode:""}`} alt="" />
                         </div>
                       </Col>
                       <Col xs={8} sm={8} md={8} lg={8} xl={8} xxl={8}>
                         <div className={styles.indexstyle}>
                           <h2>在线咨询</h2>
                           <div></div>
-                          <Button href='http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAyNTk2Nl8yOTI4MzhfNDAwODAwNTc5MF8yXw'
+                          <Button href={`http://wpa.qq.com/msgrd?v=3&uin=${getcontact.contact?getcontact.contact.qq:""}&site=qq&menu=yes`}
                             style={{ margin: "1rem auto", display: "block", maxWidth: 140 }} icon="qq" target="_blank">
                             咨询
                           </Button>

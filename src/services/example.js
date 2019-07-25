@@ -70,7 +70,12 @@ export async function getcooperate(params) {
     method: 'get',
   })
 }
-
+//getcontact
+export async function getcontact(params) {
+  return request(`edu/contact/getcontact`,{
+    method: 'get',
+  })
+}
 
 
 

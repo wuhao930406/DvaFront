@@ -1,6 +1,6 @@
 import {
   getall, getadv, getaboutus, getservice, getenv,
-  getdevlop, getachieve, getcourse, getschool, getedu, getcooperate
+  getdevlop, getachieve, getcourse, getschool, getedu, getcooperate,getcontact
 
 } from "../services/example";
 import { routerRedux } from 'dva/router'
@@ -19,10 +19,19 @@ export default {
     getcourse: [],
     getschool: [],
     getedu: [],
-    getcooperate: []
+    getcooperate: [],
+    getcontact:[]
   },
 
-  effects: {
+  effects: {    
+    * getcontact({ payload }, { call, put }) {
+      let res = yield call(getcontact, payload)
+      yield put({
+        type: 'updateState',
+        payload: { getcontact: res.data ? res.data : [] }
+      })
+      return res.next
+    },
     * getcooperate({ payload }, { call, put }) {
       let res = yield call(getcooperate, payload)
       yield put({
