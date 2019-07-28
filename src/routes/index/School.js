@@ -98,18 +98,34 @@ class School extends Component {
 
     render() {
         let { data, datas } = this.state,
-            { getschool } = this.props.example;
+            { getschool,getpublic } = this.props.example;
+            function getbac(key, i) {
+                let bacurl = "", res = "";
+                if (getpublic) {
+                    getpublic.map((item) => {
+                        if (item.title == key) {
+                            bacurl = item[i]
+                        }
+                    })
+                }
+                if (i === "bacurl") {
+                    res = bacurl ? bacurl : "./assets/images/school.jpg";
+                } else {
+                    res = bacurl ? bacurl : ""
+                }
+                return res
+            }
 
         return (
             <Spin spinning={this.props.loads}>
                 <div className={styles.container}>
-                    <div className={styles.mostbanner} style={{ background: `url(./assets/images/school.jpg) no-repeat center`, backgroundSize: "cover" }}>
+                    <div className={styles.mostbanner} style={{ background: `url(${getbac("School","bacurl")}) no-repeat center`, backgroundSize: "cover" }}>
                         <div className={styles.minddle}>
                             <SubTitles
                                 title="信息化校园平台"
                                 tstyle={{ fontSize: 36, color: "#fff" }}
                                 lstyle={{ backgroundColor: "#fff" }}
-                                desc="海学达国际教育致力于培养高素质国际人才"
+                                desc={getbac("School","desc")}
                                 dstyle={{ backgroundColor: "rgba(0,0,0,0.1)", padding: 8, color: "#fff" }}
                             >
                             </SubTitles>

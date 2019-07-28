@@ -92,7 +92,7 @@ class IndexPage extends Component {
   handleClick = (e) => {
     this.setState({
       current: e.key,
-      ifshow: e.key.indexOf("service") != -1 || e.key.indexOf("circle") != -1
+      ifshow: e.key.indexOf("service") !== -1 || e.key.indexOf("circle") !== -1
     },()=>{
 
       this.setNewState("redirect",{url:e.key.split(":")[1]})
@@ -100,7 +100,8 @@ class IndexPage extends Component {
   };
 
   componentDidMount(){
-    this.setNewState("getcontact")
+    this.setNewState("getcontact");
+    this.setNewState("getpublic");
   }
 
 
@@ -307,4 +308,4 @@ class IndexPage extends Component {
   }
 }
 
-export default connect()(IndexPage);
+export default IndexPage

@@ -77,7 +77,12 @@ export async function getcontact(params) {
   })
 }
 
-
+//getcontact
+export async function getpublic(params) {
+  return request(`edu/public/getpublic`,{
+    method: 'get',
+  })
+}
 
 
 

@@ -1,12 +1,13 @@
-import { Row, Col, Card, Icon, PageHeader, Carousel } from 'antd';
+import { Row, Col, Card, Icon, PageHeader, Carousel,Spin } from 'antd';
 import { Link, router } from 'dva/router';
 import SubTitles from '../../components/SubTitles'
 import React, { Component } from 'react';
 import styles from '../IndexPage.css';
 import { connect } from 'dva';
 
-@connect(({ example }) => ({
-  example
+@connect(({ example,loading }) => ({
+  example,
+  loads:loading.effects['example/getall']
 }))
 class HomePage extends Component {
   constructor(props) {
@@ -36,17 +37,17 @@ class HomePage extends Component {
   }
 
   render() {
-    const { getall,getadv,getaboutus,getservice } = this.props.example,
-      {  } = this.state;
+    const { getall,getadv,getaboutus,getservice } = this.props.example;
 
     return (
       <Row style={{ margin: 0 }}>
+      <Spin spinning={this.props.loads}>
         <div className={styles.dotc}>
           <Carousel autoplay speed={800} draggable autoplaySpeed={4000}>
             {
               getall &&
               getall.map((Item, i) => {
-                let imgurl = `http://localhost:3000/edu${Item.url}`
+                let imgurl = `/edu${Item.url}`
                 return (
                   Item.jumpurl ?
                     <Link to={Item.jumpurl} key={i} className={styles.banner} >
@@ -109,8 +110,6 @@ class HomePage extends Component {
             </Row>
           </div>
         </div>
-
-
         <div className={styles.minddle}>
           <Row gutter={24} style={{ margin: 0 }}>
             <Col style={{ marginBottom: 40, padding: 0 }}>
@@ -154,8 +153,7 @@ class HomePage extends Component {
             </Row>
           </Row>
         </div>
-
-
+        </Spin>
       </Row>
     );
   }

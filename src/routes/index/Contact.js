@@ -43,7 +43,24 @@ class Contact extends Component {
 
 
     render() {
-        let { center } = this.state, { getcontact } = this.props.example;
+        let { center } = this.state, 
+        { getcontact ,getpublic } = this.props.example;
+        function getbac(key, i) {
+            let bacurl = "", res = "";
+            if (getpublic) {
+                getpublic.map((item) => {
+                    if (item.title == key) {
+                        bacurl = item[i]
+                    }
+                })
+            }
+            if (i === "bacurl") {
+                res = bacurl ? bacurl : "./assets/images/contact.jpg";
+            } else {
+                res = bacurl ? bacurl : ""
+            }
+            return res
+        }
 
         const styleC = {
             background: `url('http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/map-marker-icon.png')`,
@@ -60,13 +77,13 @@ class Contact extends Component {
         return (
             <Spin spinning={this.props.loads}>
                 <div className={styles.container}>
-                    <div className={styles.mostbanner} style={{ background: `url(./assets/images/contact.jpg) no-repeat center`, backgroundSize: "cover" }}>
+                    <div className={styles.mostbanner} style={{ background: `url(${getbac("Contact","bacurl")}) no-repeat center`, backgroundSize: "cover" }}>
                         <div className={styles.minddle}>
                             <SubTitles
                                 title="联系我们"
                                 tstyle={{ fontSize: 36, color: "#fff", textShadow: "1px 1px 4px #000" }}
                                 lstyle={{ backgroundColor: "#333" }}
-                                desc="海学达国际教育致力于培养高素质国际人才"
+                                desc={getbac("Contact","desc")}
                                 dstyle={{ backgroundColor: "rgba(255,255,255,0.8)", padding: 8, color: "#555" }}
                             >
                             </SubTitles>

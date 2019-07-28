@@ -81,18 +81,35 @@ class Partner extends Component {
     }
 
     render() {
-        let { data, datas } = this.state, { getcooperate } = this.props.example;
+        let { data, datas } = this.state, 
+        { getcooperate ,getpublic } = this.props.example;
+        function getbac(key, i) {
+            let bacurl = "", res = "";
+            if (getpublic) {
+                getpublic.map((item) => {
+                    if (item.title == key) {
+                        bacurl = item[i]
+                    }
+                })
+            }
+            if (i === "bacurl") {
+                res = bacurl ? bacurl : "./assets/images/partner.jpg";
+            } else {
+                res = bacurl ? bacurl : ""
+            }
+            return res
+        }
 
         return (
             <Spin spinning={this.props.loads}>
                 <div className={styles.container}>
-                    <div className={styles.mostbanner} style={{ background: `url(./assets/images/partner.jpg) no-repeat center`, backgroundSize: "cover" }}>
+                    <div className={styles.mostbanner} style={{ background: `url(${getbac("Partner","bacurl")}) no-repeat center`, backgroundSize: "cover" }}>
                         <div className={styles.minddle}>
                             <SubTitles
                                 title="合作伙伴"
                                 tstyle={{ fontSize: 36, color: "#fff", textShadow: "1px 1px 4px #000" }}
                                 lstyle={{ backgroundColor: "#fff" }}
-                                desc="海学达国际教育致力于培养高素质国际人才"
+                                desc={getbac("Partner","desc")}
                                 dstyle={{ backgroundColor: "rgba(0,0,0,0.4)", padding: 8, color: "#fff" }}
                             >
                             </SubTitles>
