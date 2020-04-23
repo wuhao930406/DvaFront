@@ -14,12 +14,12 @@ class Contact extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            center: { longitude: 120, latitude: 30 }
+            center: { longitude: 112.52127, latitude: 37.839477 }
         }
     }
     changeCenter = () => {
         this.setState({
-            center: { longitude: 120, latitude: 30 }
+            center: { longitude: 112.52127, latitude: 37.839477 }
         })
     }
 

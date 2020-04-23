@@ -23,7 +23,11 @@ export default {
     getcontact: [],
     getpublic: [],
   },
-
+  subscriptions: {
+    setup(vlaue) {
+      console.log(vlaue)
+    }
+  },
   effects: {
     * getpublic({ payload }, { call, put }) {
       let res = yield call(getpublic, payload)

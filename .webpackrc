@@ -7,7 +7,7 @@
   },
   "proxy": {
     "/edu": {
-      "target":"http://localhost:7001/",
+      "target":"http://www.haixueda.com/edu/",
       "changeOrigin": true,
       "pathRewrite": { "^/edu" : "" }
     }

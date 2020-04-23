@@ -100,10 +100,10 @@ class Achiev extends Component {
                                 >
                                 </SubTitles>
                                 <div className={styles.flexrow} style={{ marginTop: 60 }}>
-                                    <a href="http://www.baidu.com">
+                                    <a href="mailto:haixueda@163.com">
                                         <img style={{ width: 20, marginRight: 20 }} src="./assets/images/email.png" alt="" />
                                     </a>
-                                    <a href="http://www.baidu.com">
+                                    <a href={`http://wpa.qq.com/msgrd?v=3&uin=${this.props.example.getcontact.contact?this.props.example.getcontact.contact.qq:"2650574358"}&site=qq&menu=yes`}>
                                         <img style={{ width: 20 }} src="./assets/images/message.png" alt="" />
                                     </a>
                                 </div>

@@ -122,7 +122,7 @@ class HomePage extends Component {
                 getservice.map((item, i) => {
                   return (
                     <Col key={i} xs={24} sm={12} md={12} lg={8} xl={8} xxl={8} style={{ padding: 24 }}>
-                      <Link style={{ width: "100%", height: 300 }} to="/404">
+                      <Link style={{ width: "100%", height: 300 }} to={item.id==4?"/main/internation":item.id==5?"/main/school":item.id==6?"/main/activity":""}>
                         <div className={styles.hoveritem}>
                           <div className={styles.hideimg}>
                             <img src={`./assets/images/indexicon${i + 1}.png`} alt="" />

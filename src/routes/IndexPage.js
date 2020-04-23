@@ -94,7 +94,6 @@ class IndexPage extends Component {
       current: e.key,
       ifshow: e.key.indexOf("service") !== -1 || e.key.indexOf("circle") !== -1
     },()=>{
-
       this.setNewState("redirect",{url:e.key.split(":")[1]})
     });
   };
